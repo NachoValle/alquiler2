@@ -1,0 +1,319 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ <style>
+   .contenedor{
+     height:50px;
+     
+   }
+
+		#matricula {
+
+			position: relative;
+    display:inline-block;
+    text-align: center;
+    width:150px;
+    
+
+		}
+
+		#placa
+
+		{
+      
+
+		position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+
+		}
+.container{
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+}
+	</style>
+ 
+ {% endblock %}
+{%  block titulo_pagina %}Actualizar Permisos Empleado{% endblock %}
+
+{% block content %}
+0
+<div style='width:450px' >
+                  
+                <section class="panel wrapper panel-info">
+                      
+                        
+                          
+                             
+                                
+                                    <div  style="color:black" >
+        
+                                           <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+                                            <input type="email" value="{{profile.user.email}}" class="form-control" readonly>
+                                                 <br>
+                                                 <section class="clearfix text-center m-t" >
+                         
+                         
+                         
+                      <section class="panel panel-info" >
+                        <header class="panel-heading bg-info dker lt no-border">
+                          <div class=" clearfix">
+                            <a href="#" class="pull-left thumb avatar b-3x m-r">
+                             {% if profile.avatar_user %}
+                              <img src="{{profile.avatar_user.url}}" class="img-circle">
+                               {% else %}
+                              <img src='{% static "core/images/no-avatar.jpg" %}' class="img-circle">
+                           {% endif %}
+
+                            </a>
+                            <div class="clear">
+                              <div class="h3 m-t-xs m-b-xs text-white">
+                               {{ profile.user}}
+                                <i class="fa fa-circle text-white pull-right text-xs m-t-sm"></i>
+                              </div>
+                              <small class="text-muted">Permiso de Usuario</small>
+                            </div>                
+                          </div>
+                          <label>Oficina:</label>
+                          {{form.oficina}}
+                        </header>
+                        <div class="list-group no-radius alt">
+                          <p class="list-group-item" >
+                          
+                            <span id='madrid' class="badge bg-success"><b id ="texto">OK</b> {{form.madrid}}
+                         </span>
+                            
+            
+                            <i class="fas fa-city icon-muted"></i> 
+                            Madrid
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id = "valladolid" class="badge bg-success"><b id ="texto2">OK</b>   {{form.valladolid}}</span>
+                         
+                            <i class="fas fa-city icon-muted"></i> 
+                            Valladolid
+                          </p>
+                          <p class="list-group-item" >
+                         
+                            <span id = "salamanca" class="badge bg-success"><b id ="texto3">OK</b>   {{form.salamanca}}</span>
+                          
+                            <i class="fas fa-city icon-muted"></i> 
+                            Salamanca
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id="laspalmas" class="badge bg-success"><b id ="texto4">OK</b>  {{form.las_palmas}}</span>
+                          
+                            <i class="fas fa-city icon-muted"></i> 
+                            Las Palmas de Gran Canaria
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id="mallorca" class="badge bg-success"><b id ="texto5">OK</b>  {{form.mallorca}}</span>
+                         
+                            <i class="fas fa-city icon-muted"></i> 
+                            Palma de Mallorca
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span  id="zamora" class="badge bg-success"><b id ="texto6">OK</b>    {{form.zamora}}</span>
+                          
+                            <i class="fas fa-city icon-muted"></i> 
+                            Zamora
+                            
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id="todas" class="badge bg-success"><b id ="texto7">OK</b>    {{form.todas}}</span>
+                          
+                        
+                            <i class="fas fa-globe-europe icon-muted"></i> 
+                            Todas las ciudades
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id="user" class="badge bg-success"><b id ="texto8">OK</b>  {{form.p_user}}</span>
+                          
+                            <i class="fas fa-users icon-muted"></i> 
+                            Permisos para Usuarios
+                          </p>
+                          <p class="list-group-item" >
+                          
+                            <span id="vehiculo" class="badge bg-success"><b id ="texto9">OK</b> {{form.p_vehiculos}}</span>
+                          
+                            <i class="fas fa-car icon-muted"></i> 
+                            Crear Vehiculos
+                          </p>
+
+
+
+
+
+                        </div>
+                      </section>
+                 
+                   
+
+
+
+
+                          
+                    
+                          
+
+                         
+                         
+                         
+                          </section>    
+                                            
+                                                <br>
+                                                
+                                                <div class="text center">
+                                            <input type="submit"  class="btn bg-info dker  btn-inline" value="Actulizar Permisos Usuario" />
+                                           
+                                             </div>
+                                             </form>
+                                    </div>
+                                  
+                          </section>    
+                          
+
+           
+                           
+                            
+ 
+ 
+ 
+ </div>
+         
+                    
+ <script>
+ function Simadrid(){
+var a = document.getElementById('id_madrid').checked;
+if (a == true){
+   document.getElementById('texto').innerHTML = "OK";
+   document.getElementById('madrid').className  = "badge bg-success";
+}else{
+  document.getElementById('texto').innerHTML = "NO";
+  document.getElementById('madrid').className  = "badge bg-danger dker";
+};
+
+
+};
+     
+function Sivalladolid(){
+var a = document.getElementById('id_valladolid').checked;
+if (a == true){
+   document.getElementById('texto2').innerHTML = "OK";
+   document.getElementById('valladolid').className  = "badge bg-success";
+}else{
+  document.getElementById('texto2').innerHTML = "NO";
+  document.getElementById('valladolid').className  = "badge bg-danger dker";
+};
+
+
+};
+function Sisalamanca(){
+var a = document.getElementById('id_salamanca').checked;
+if (a == true){
+   document.getElementById('texto3').innerHTML = "OK";
+   document.getElementById('salamanca').className  = "badge bg-success";
+}else{
+  document.getElementById('texto3').innerHTML = "NO";
+  document.getElementById('salamanca').className  = "badge bg-danger dker";
+};
+
+
+};
+function Silaspalmas(){
+var a = document.getElementById('id_las_palmas').checked;
+if (a == true){
+   document.getElementById('texto4').innerHTML = "OK";
+   document.getElementById('laspalmas').className  = "badge bg-success";
+}else{
+  document.getElementById('texto4').innerHTML = "NO";
+  document.getElementById('laspalmas').className  = "badge bg-danger dker";
+};
+
+
+};
+function Simallorca(){
+var a = document.getElementById('id_mallorca').checked;
+if (a == true){
+   document.getElementById('texto5').innerHTML = "OK";
+   document.getElementById('mallorca').className  = "badge bg-success";
+}else{
+  document.getElementById('texto5').innerHTML = "NO";
+  document.getElementById('mallorca').className  = "badge bg-danger dker";
+};
+
+
+};
+function Sizamora(){
+var a = document.getElementById('id_zamora').checked;
+if (a == true){
+   document.getElementById('texto6').innerHTML = "OK";
+   document.getElementById('zamora').className  = "badge bg-success";
+}else{
+  document.getElementById('texto6').innerHTML = "NO";
+  document.getElementById('zamora').className  = "badge bg-danger dker";
+};
+
+
+};
+function Sitodas(){
+var a = document.getElementById('id_todas').checked;
+if (a == true){
+   document.getElementById('texto7').innerHTML = "OK";
+   document.getElementById('zamora').className  = "badge bg-success";
+}else{
+  document.getElementById('texto7').innerHTML = "NO";
+  document.getElementById('todas').className  = "badge bg-danger dker";
+};
+
+
+};
+function Siuser(){
+var a = document.getElementById('id_p_user').checked;
+if (a == true){
+   document.getElementById('texto8').innerHTML = "OK";
+   document.getElementById('user').className  = "badge bg-success";
+}else{
+  document.getElementById('texto8').innerHTML = "NO";
+  document.getElementById('user').className  = "badge bg-danger dker";
+};
+
+
+};
+function Sivehiculo(){
+var a = document.getElementById('id_p_vehiculos').checked;
+if (a == true){
+   document.getElementById('texto9').innerHTML = "OK";
+   document.getElementById('vehiculo').className  = "badge bg-success";
+}else{
+  document.getElementById('texto9').innerHTML = "NO";
+  document.getElementById('vehiculo').className  = "badge bg-danger dker";
+};
+
+
+};
+
+
+
+
+
+window.onload = Simadrid(); Sisalamanca(); Sivalladolid(); Silaspalmas();Simallorca();Sizamora();Sitodas();Siuser();Sivehiculo();
+ </script>          
+                    
+
+               
+
+
+
+                 
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+  <style type="text/css">
+  .container{
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+  .wrapper{
+  width: 800px;
+  margin: 10px 0;
+  
+}
+
+body{
+  background-color: #3498db;
+}
+.peligro{
+background-color:#c0392b;
+color:black;
+}
+.alert-warning{
+  background-color:#f4d03f;
+color:black;
+}
+.editar{
+  background-color:#f4d03f;
+color:white;
+}
+.ver{
+background-color:#3498db;
+color:white;
+}
+ </style>
+ {% endblock %}
+{%  block titulo_pagina %}Lista de Grupos {% endblock %}
+
+{% block content %}
+<!--{% if itv_ok %}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{itv_ok}}</a>.
+</div>
+{% endif %}-->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{ message }}</a>.
+</div>
+        
+    
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="container">
+<section class="panel panel-azul wrapper">
+
+           <header class="panel-heading bg-azul3" style= "color: black">
+                  <h5>Grupos {{ciudad}}</h5>
+                </header>
+                  <div class="table-responsive">
+                  <table class="table table-striped b-t b-light" id="tabla_datos">
+                    <thead>
+                      <tr>                   
+                        
+                        <th>Grupo</th>                         
+                        <th>Descripción</th>
+                        <th>Acciones</th>                         
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for object in grupos %}
+                     
+
+                      <tr>
+                         
+                        
+                        <td width="10%" class="th-sortable" data-toggle="class">{{object.grupo}}</td>
+                        <td >{{object.descripcion}}</td>
+                       
+                        
+                        <td><a href="#"><button class="btn btn-sm ver btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title="imprimir contrato"><i class="fas fa-print"> </i></button></a><a href="#"> <button class="btn btn-sm editar btn-rounded" data-toggle="tooltip" data-placement="left" title="" data-original-title="Editar contrato"><i class="fas fa-pencil-alt" ></i></button> </a>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                
+              </section>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

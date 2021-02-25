@@ -1,0 +1,639 @@
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES" "http://www.w3.org/TR/html4/loose.dtd">
+--><!DOCTYPE html>
+<html class="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        {% load static %}
+       
+        
+        <title > Contrato:( {{contrato.c_general}} )</title>
+        <style>
+       
+            @page {
+              
+        size: a4 portrait;
+        
+        {% if contrato.cancelado %}
+        @frame col1_frame {           /* detalle vehiculo */
+            
+            left: 470; width: 100pt; top: 100pt; height: 29pt; padding:2pt;
+             -pdf-frame-border: 1;          
+        }
+        {% endif %}
+        @frame col1_frame {           /* detalle vehiculo */
+            
+            left: 35pt; width: 180pt; top: 120pt; height: 29pt; padding:2pt;
+             -pdf-frame-border: 1;          
+        }
+      
+    
+        @frame col1_frame {           /* detalle vehiculo */
+            
+            left: 34pt; width: 265pt; top: 157pt; height: 24pt;
+                      
+        }
+        @frame col2_frame {           /* Content detallevehiculo */
+            
+            left: 34pt; width: 265pt; top: 155pt; height: 50pt; 
+            -pdf-frame-border: 1;          
+        }
+        @frame col3_frame {             /* detalle contuctor1 */
+            left: 34pt; width: 265pt; top:212pt; height: 24pt;
+            
+        }
+        @frame col4_frame {             /* Content detalle conductor1 */
+            left: 34pt; width: 265pt; top:210pt; height: 130pt;
+             -pdf-frame-border: 1;
+        }
+/* 
+        @frame col4_frame {             Content detalle licencia conductor1
+            left: 34pt; width: 265pt; top:210pt; height: 142pt;
+             -pdf-frame-border: 1;
+        }
+ */
+        @frame col5_frame {             /* detalle cliente */
+            left: 34pt; width: 265pt; top:348pt; height: 24pt;
+            
+        }
+        @frame col6_frame {             /* Content detalle cliente */
+            left: 34pt; width: 265pt; top:345pt; height: 100pt;
+             -pdf-frame-border: 1;
+        }
+        @frame col7_frame {             /* detalle Adicional */
+            left: 305pt; width: 265pt; top:388pt; height: 24pt;
+            
+        }
+        @frame col8_frame {             /* Content detalle Adicional */
+            left: 305pt; width: 265pt; top:388pt; height: 100pt;
+             -pdf-frame-border: 1;
+        }
+        
+
+
+       
+        @frame col9_frame {             /* detalle alquiler */
+            left: 305pt; width: 265pt; top: 135pt; height:24pt; 
+        }
+
+        @frame col10_frame {           /* Content detalle alquiler */
+            
+            left: 305pt; width: 265pt; top: 155pt; height:73pt; 
+            -pdf-frame-border: 1;          
+        }
+        @frame col10_frame {           /* Content combustible */
+            
+            left: 305pt; width: 265pt; top: 195pt; height:33pt; 
+            -pdf-frame-border: 1;          
+        }
+         /*  
+       @frame col11_frame {          Content condiciones 
+            
+            left: 305pt; width: 265pt; top: 234pt; height:32pt;
+            -pdf-frame-border: 1;
+        }*/
+        @frame col11_frame {           /* concepto */            
+            left: 305pt; width: 265pt; top: 232pt; height:16pt;
+            -pdf-frame-border: 1;        }       
+        @frame col11_frame {           /* precio */            
+            left: 450pt; width: 40pt; top: 232pt; height:16pt;
+            -pdf-frame-border: 1;        }
+         @frame col11_frame {           /* Cant. */            
+            left: 490pt; width: 30pt; top: 232pt; height:16pt;
+            -pdf-frame-border: 1;        }
+         @frame col11_frame {           /* total */            
+            left: 525pt; width: 35pt; top: 232pt; height:16pt;         
+        }
+            /* 111111111111111111111111111111111111111 */ 
+         @frame col11_frame {           /* concepto1 */            
+            left: 305pt; width: 265pt; top: 248pt; height:17pt;
+            -pdf-frame-border: 1;           
+        }
+         @frame col11_frame {           /* precio1*/            
+            left: 457pt; width: 30pt; top: 248pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* cantidad1*/            
+            left: 482pt; width: 35pt; top: 248pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* total1*/            
+            left: 520pt; width: 45pt; top: 248pt; height:17pt;                    
+        }
+            /* 2222222222222222222222222222222222222222222222222 */
+        @frame col11_frame {           /* concepto2 */            
+            left: 305pt; width: 265pt; top: 265pt; height:17pt;
+            -pdf-frame-border: 1;           
+        }
+         @frame col11_frame {           /* precio2*/            
+            left: 457pt; width: 30pt; top: 265pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* cantidad2*/            
+            left: 482pt; width: 35pt; top: 265pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* total2*/            
+            left: 520pt; width: 45pt; top: 265pt; height:17pt;          
+        }
+            /* 333333333333333333333333333333333333333333333333 */
+        @frame col11_frame {           /* concepto3 */            
+            left: 305pt; width: 265pt; top: 282pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+         @frame col11_frame {           /* precio3*/            
+            left: 457pt; width: 30pt; top: 282pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* cantidad3*/            
+            left: 482pt; width: 35pt; top: 282pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* total3*/            
+            left: 520pt; width: 45pt; top: 282pt; height:17pt;                    
+        }
+        /* 44444444444444444444444444444444444444444444444444444 */
+        @frame col11_frame {           /* concepto4 */            
+            left: 305pt; width: 265pt; top: 299pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+         @frame col11_frame {           /* precio4*/            
+            left: 457pt; width: 30pt; top: 299pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* cantidad4*/            
+            left: 482pt; width: 35pt; top: 299pt; height:17pt;                    
+        }
+        @frame col11_frame {           /* total4*/            
+            left: 520pt; width: 45pt; top: 299pt; height:17pt;                    
+        }
+        
+
+
+        /* 555555555555555555555555555555555555555555555555555 
+        @frame col11_frame {            concepto5            
+            left: 305pt; width: 265pt; top: 346pt; height:20pt;
+            -pdf-frame-border: 1;            
+        }
+         @frame col11_frame {           precio5          
+            left: 457pt; width: 30pt; top: 346pt; height:20pt;                    
+        }
+        @frame col11_frame {           cantidad5           
+            left: 482pt; width: 35pt; top: 346pt; height:20pt;                    
+        }
+        @frame col11_frame {           /* total5           
+            left: 520pt; width: 45pt; top: 346pt; height:20pt;                    
+        }
+        /* 666666666666666666666666666666666666666666666666666666 
+        @frame col11_frame {           /* concepto6             
+            left: 305pt; width: 265pt; top: 366pt; height:20pt;
+            -pdf-frame-border: 1;            
+        }
+         @frame col11_frame {           /* precio6           
+            left: 457pt; width: 30pt; top: 366pt; height:20pt;                    
+        }
+        @frame col11_frame {           /* cantidad6           
+            left: 482pt; width: 35pt; top: 366pt; height:20pt;                    
+        }
+        @frame col11_frame {           /* total6           
+            left: 520pt; width: 45pt; top: 366pt; height:20pt;                    
+        }
+        */
+         @frame col11_frame {                  /* Forma de pago*/     
+            left: 305pt; width: 115pt; top: 320pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+
+
+        @frame col11_frame {                       /* total alquiler texto*/   
+            left: 420pt; width: 150pt; top: 320pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+
+
+        @frame col11_frame {           /* total alquiler*/           
+            left: 508pt; width: 60pt; top: 320pt; height:20pt;                    
+        }
+
+         @frame col11_frame {                  /* Forma depósito*/     
+            left: 305pt; width: 115pt; top: 337pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+
+
+        @frame col11_frame {                       /* total fianza texto*/   
+            left: 420pt; width: 150pt; top: 337pt; height:17pt;
+            -pdf-frame-border: 1;            
+        }
+
+
+        @frame col11_frame {           /* total fianza*/           
+            left: 508pt; width: 60pt; top: 337pt; height:17pt;                    
+        }
+
+         @frame col11_frame {           /* franquicia */            
+            left: 305pt; width: 265pt; top: 360pt; height:23pt;
+            -pdf-frame-border: 1;            
+        }
+         @frame col6_frame {             /* comentario */
+            left: 34pt; width: 265pt; top:448pt; height: 18pt;
+             -pdf-frame-border: 1;
+        }
+
+
+        @frame col6_frame {             /* ATENDIDO POR */
+            left: 34pt; width: 265pt; top:470pt; height: 18pt;
+             -pdf-frame-border: 1;
+        }
+        @frame col6_frame {             /* oficina en */
+            left: 34pt; width: 265pt; top:470pt; height: 18pt;
+             
+        }@frame col1_frame {             /* Content condiciones */
+            left: 34pt; width: 536pt; top: 490pt; height: 195pt;
+             -pdf-frame-border: 1;
+        }
+
+
+         @frame col1_frame {             /* averia */
+            left: 34pt; width: 536pt; top: 688pt; height: 22.62pt;
+             -pdf-frame-border: 1;
+        }
+        
+        @frame col1_frame {             /* empleado */
+            left: 34pt; width: 178pt; top: 710pt; height: 22.62pt;
+             
+        }
+         @frame col1_frame {             /* conductor */
+            left: 221pt; width: 178pt; top: 710pt; height: 22.62pt;
+             
+        }
+         @frame col1_frame {             /* conductor adicional */
+            left: 390pt; width: 178pt; top: 710pt; height: 22.62pt;
+             
+        }
+
+        
+    }
+.p9{ 
+    font-size: 9pt;
+    
+    padding: 1;
+}
+h3{
+    padding:1pt;
+    margin:1pt;
+}
+h1 {
+  -pdf-outline: true;  -pdf-level: 0;
+  -pdf-open: false;
+}
+.vehiculo {
+    text-align:center;
+    font-size: 12pt;
+    padding: 1;
+    
+   
+}
+.contrato{
+    padding: 3pt;
+    margin: 3pt;
+}
+.d_vehiculo {
+    text-align:center;
+    font-size: 8pt;
+    padding-top:20pt;
+    margin:2pt;
+}
+.d_conductor {
+    
+    font-size: 8pt;
+    padding-top:20pt;
+    margin-top:8pt;
+    margin-left:3pt;
+
+}
+
+.combustible {
+    color:#bbb;
+    font-size: 9pt;
+    padding-top:2pt;
+    margin-top:7pt;
+    margin-left:6pt;
+
+}
+.tanque_F {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:200pt;
+}
+.tanque_78 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:182pt;
+}
+.tanque_34 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:168pt;
+}
+.tanque_58 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:147pt;
+}
+.tanque_12 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:135pt;
+}
+.tanque_38 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:112pt;
+}
+.tanque_14 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:99pt;
+}
+.tanque_18 {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:76pt;
+}
+.tanque_E {
+    color:black;
+    text-decoration: underline;
+    font-size: 14pt;
+    font-weight: 900;
+    margin: 0pt;
+    padding: 3pt;
+    padding-top:7pt;
+    padding-left:65pt;
+}
+.alquiler {
+    
+   font-size: 8pt;
+    padding-top:5pt;
+    margin-top:8pt;
+    padding-left:3pt;
+}   
+.condiciones {
+    color:black;
+    text-align:center;
+    font-size: 12pt;
+    padding: 5pt;
+    margin:2pt;
+}
+.condic {
+    
+    font-size: 8pt;
+    color:black;
+    text-align:center;
+
+}
+.franquicia {
+    padding-bottom:0pt;
+    padding-top:4pt;
+    color:#2D2D2D;
+    text-align:center;
+    
+}
+.conceptos {
+    
+    font-size: 8pt;
+    color:black;
+    padding-top:3pt;
+    margin-left: 0pt;
+    padding-left: 0pt;
+
+}
+.cancelado {
+    text-align:center;
+    font-size: 12pt;
+    color:red;
+    padding-top:5pt;
+    margin-left: 0pt;
+    padding-left: 0pt;
+    
+
+}
+a.printable:link:after, a.printable:visited:after { content:" [" attr(href) "] ";} 
+        </style>
+       
+    </head>
+    <body>
+    
+{% if contrato.cancelado %}
+<div class="cancelado"> CANCELADO!!</div>
+{% endif %}
+<div id="contrato"><a href="#" class="printable" style="text-decoration:none;color:black;">
+<b>Contrato:</b> {{contrato.c_general}} // {% if contrato.b_madrid %}{{contrato.c_madrid}}{% elif contrato.b_salamanca %}{{contrato.c_salamanca}}{% elif contrato.b_valladolid %}{{contrato.c_valladolid}}{% elif contrato.b_las_palmas %}{{contrato.c_las_palmas}}{% elif contrato.b_mallorca %}{{contrato.c_mallorca}}{% elif contrato.b_zamora %}{{contrato.c_zamora}}{% endif %} - {{contrato.oficina}}<br>
+&nbsp;<b>Fecha:</b>{{contrato.f_contrato}}&nbsp;<b>&nbsp; Hora:  </b>{{contrato.h_contrato}}<br>
+
+</a>
+
+</div>
+
+
+      <div class="vehiculo">
+   <h3>Vehículo</h3>
+    </div>
+ <div class="d_vehiculo"><b>Matrícula: </b> {{contrato.vehiculo}}    &nbsp;       <b>   &nbsp;  Tipo de combustible: </b>{{contrato.t_combustible}}{% if contrato.t_combustible == "GASOLINA" %} <b>(E5) (E10)</b> {% elif contrato.t_combustible == "DIESEL" %} <b>(B7)</b> {% endif %}<br>
+ <b>Marca/modelo/color:</b>  &nbsp; {{contrato.marca}} &nbsp;{{contrato.modelo}} &nbsp; ({{contrato.color}}).<br>
+ </div>
+   <div class="vehiculo">
+   <h3>Conductor</h3>
+    </div>
+<div class="d_conductor">
+<b>N.I.F.//Pasaporte: </b>{{contrato.conductor}} &nbsp; <b> &nbsp;  Num.:  &nbsp;</b> {{contrato.id_conductor}}<br>
+<b>Nombre: </b>{{contrato.nombre}}<br>
+<b> Apellidos: </b>{{contrato.apellido}}<br>
+<b>Domicilio: </b> {{contrato.direccion}}<br>
+<b> Población:</b> {{contrato.poblacion}}  &nbsp; <b> &nbsp; Provincia: </b> {{contrato.provincia}}<br>
+<b> Pais:</b> {{contrato.pais}} &nbsp;  &nbsp;<b>Nacimiento: </b>{{contrato.f_nacimiento}}<br>
+<b> Licencia: </b>{{contrato.licencia}} &nbsp;<b> Expedición: </b>{{contrato.f_exp}}<br>
+<b>&nbsp;Lugar:</b>&nbsp;{{contrato.l_exp}} &nbsp;<b>&nbsp;Caducidad: </b>&nbsp;{{contrato.f_caducidad}}<br>
+<b>Contacto: </b>{% if contrato.telefono %}{{contrato.telefono}} {% endif %} &nbsp;{% if contrato.movil %} // {{contrato.movil}} {% endif %} 
+</div>
+
+<div class="vehiculo">
+   <h3>Cliente</h3>
+    </div>
+<div class="d_conductor">
+<b>N.I.F.//C.I.F.: </b>{{contrato.cliente}} &nbsp; <b> &nbsp;  Num.:  &nbsp;</b> {{contrato.id_cliente}}<br>
+<b>Nombre: </b>{{contrato.c_nombre}} {% if contrato.c_apellido %}{{contrato.c_apellido}} {% endif %} <br>
+
+<b>Domicilio: </b> {{contrato.c_direccion}}<br>
+<b> Población:</b> {{contrato.c_poblacion}}  &nbsp; <b> &nbsp; Provincia: </b> {{contrato.c_provincia}}<br>
+<b> Pais:</b> {{contrato.pais}} &nbsp;  &nbsp;<b>C.P.: </b>{% if contrato.c_cp %} {{contrato.c_cp}}{% endif %}<br>
+<b> Contacto: </b> {% if contrato.c_telefono %}{{contrato.c_telefono}} {% endif %} &nbsp;{% if contrato.c_movil %} // {{contrato.c_movil}} {% endif %} 
+</div>
+ <div class="vehiculo">    
+<h3> Conductor Adicional</h3>
+    </div>
+<div class="d_conductor">
+<b>N.I.F.//Pasaporte: </b>{% if contrato.adicional %}{{contrato.conductor_a}}{% else %}·············{% endif %} &nbsp; <b> &nbsp;  Num.:  &nbsp;</b> {% if contrato.adicional %}{{contrato.id_conductor_ad}}{% else %}·······{% endif %}<br>
+<b>Nombre: </b>{% if contrato.adicional %}{{contrato.a_nombre}}{% else %}·············{% endif %}<br>
+<b> Apellidos: </b>{% if contrato.adicional %}{{contrato.a_apellido}}{% else %}·············{% endif %}<br>
+
+<b>Nacimiento: </b>{% if contrato.adicional %}{{contrato.a_f_nacimiento}}{% else %}·············{% endif %}<br>
+<b> Licencia: </b{% if contrato.adicional %}{{contrato.a_licencia}}{% else %}·············{% endif %} &nbsp;<b> Expedición: </b>{% if contrato.adicional %}{{contrato.a_f_exp}}{% else %}·············{% endif %}<br>
+<b>Lugar:</b>&nbsp;{% if contrato.adicional %}{{contrato.a_l_exp}}{% else %}·············{% endif %} &nbsp;<b>&nbsp;Caducidad: </b>&nbsp;{% if contrato.adicional %}{{contrato.a_f_caducidad}}{% else %}·············{% endif %}<br>
+
+</div>       
+
+<div class="vehiculo">
+<h3>Detalle Alquiler</h3>
+    </div>
+<div class="alquiler">
+<b>Inicio:  </b>{{contrato.f_inicio}} a las {{contrato.h_inicio}} en {{contrato.ciudad_recogida}}<br>
+<b> Fin:  &nbsp;    </b> {{contrato.f_fin}} a las {{contrato.h_fin}} en {{contrato.ciudad_devolucion}}<br>
+{% if contrato.km_ilimitado %} <b>Km libres: </b> Ilimitado &nbsp; <b>&nbsp;Km salida: </b>{{contrato.km_inicio}}
+{% else %}<b>Km libres: </b> {{contrato.km_libres}} &nbsp; <b>Km extra: </b>{{contrato.km_extra}} &euro; &nbsp; <b>&nbsp;Km salida: </b>{{contrato.km_inicio}}
+{% endif %}
+
+{% if contrato.combustible == "F" %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp; 5/8 &nbsp; ¾ &nbsp; 7/8  &nbsp; <div>  
+</div> 
+<h2 class="tanque_F"> F </h2>
+{% elif contrato.combustible == '7/8' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp; 5/8 &nbsp; ¾ <b style="color:#fff">&hellip; &hellip;&hellip;</b>       F<div>  
+</div> 
+<h2 class="tanque_78"> 7/8 </h2>
+
+{% elif contrato.combustible == '3/4' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp; 5/8 <b style="color:#fff">&hellip; &hellip;</b>  &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_34"> ¾ </h2>
+
+{% elif contrato.combustible == '5/8' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp;  <b style="color:#fff">&hellip; &hellip;</b> &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_58">5/8</h2>
+
+{% elif contrato.combustible == '1/2' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;   <b style="color:#fff">&hellip; &hellip;</b> &nbsp;  5/8 &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_12">½</h2>
+
+{% elif contrato.combustible == '3/8' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp; ¼  &nbsp;    <b style="color:#fff">&hellip; &hellip;</b> &nbsp;  ½ &nbsp;  5/8 &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_38">3/8</h2>
+
+{% elif contrato.combustible == '1/4' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp; 1/8 &nbsp;    <b style="color:#fff">&hellip; &hellip;</b>&nbsp; 3/8 &nbsp;  ½ &nbsp;  5/8 &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_14">¼</h2>
+
+{% elif contrato.combustible == '1/8' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>E &nbsp;    <b style="color:#fff">&hellip; &hellip;</b>&nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp;  5/8 &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_18">1/8</h2>
+
+{% elif contrato.combustible == 'E' %}
+<div class="combustible"><b style="color:black;"> Combustible:  </b>    <b style="color:#fff">&hellip; </b>&nbsp; 1/8 &nbsp; ¼  &nbsp; 3/8 &nbsp;  ½ &nbsp;  5/8 &nbsp; ¾ &nbsp; 7/8   &nbsp;  F<div>  
+</div> 
+<h2 class="tanque_E">E</h2>
+{% endif %}
+
+<!--
+<div class="condiciones" >c</div>-->
+<div class="d_conductor" style="color:black;padding:1pt;">concepto</div>
+    
+
+<div class="condic">precio</div>
+   
+<div class="condic" >cant.</div>
+<div class="condic" >total &euro;</div>
+
+<div class="conceptos" >{{contrato.concepto1}}</div>
+<div class="conceptos" id= "precio1" style="font-size: 8pt;text-align: right;" >{{contrato.precio_c1}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;" >{{contrato.cantidad_c1}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;" >{{contrato.total_c1}}</div>
+
+<div class="conceptos" {% if not contrato.concepto2 %} style ="color:#fff;" {% endif %}>{{contrato.concepto2}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; {% if not contrato.concepto2 %} color:#fff; {% endif %}" >{{contrato.precio_c2}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;{% if not contrato.concepto2 %} color:#fff; {% endif %}"  >{{contrato.cantidad_c2}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;{% if not contrato.concepto2 %} color:#fff; {% endif %}"  >{{contrato.total_c2}}</div>
+
+<div class="conceptos" {% if not contrato.concepto3 %} style ="color:#fff;" {% endif %}>{{contrato.concepto3}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; {% if not contrato.concepto3 %} color:#fff; {% endif %}" >{{contrato.precio_c3}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;{% if not contrato.concepto3 %} color:#fff; {% endif %}"  >{{contrato.cantidad_c3}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;{% if not contrato.concepto3 %} color:#fff; {% endif %}"  >{{contrato.total_c3}}</div>
+
+<div class="conceptos" {% if not contrato.concepto4 %} style ="color:#fff;" {% endif %}>{{contrato.concepto4}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; {% if not contrato.concepto4 %} color:#fff; {% endif %}" >{{contrato.precio_c4}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;{% if not contrato.concepto4 %} color:#fff; {% endif %}"  >{{contrato.cantidad_c4}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;{% if not contrato.concepto4 %} color:#fff; {% endif %}"  >{{contrato.total_c4}}</div>
+<!-- principio dos ultimos conceptos
+<div class="conceptos" {% if not contrato.concepto5 %} style ="color:#fff;" {% endif %}>{{contrato.concepto5}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; {% if not contrato.concepto5 %} color:#fff; {% endif %}" >{{contrato.precio_c5}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;{% if not contrato.concepto5 %} color:#fff; {% endif %}"  >{{contrato.cantidad_c5}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;{% if not contrato.concepto5 %} color:#fff; {% endif %}"  >{{contrato.total_c5}}</div>    
+    
+<div class="conceptos" {% if not contrato.concepto6 %} style ="color:#fff;" {% endif %}>{{contrato.concepto6}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; {% if not contrato.concepto6 %} color:#fff; {% endif %}" >{{contrato.precio_c6}}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: right;{% if not contrato.concepto6 %} color:#fff; {% endif %}"  >{{contrato.cantidad_c6}}</div>
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;{% if not contrato.concepto6 %} color:#fff; {% endif %}"  >{{contrato.total_c6}}</div>    
+   final dos ultimos conceptos -->
+
+
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: left;"  ><b>Forma de pago:</b>{% if contrato.pago_tarjeta %} Tarjeta {% else %} Efectivo{% endif %} </b></div> 
+<div class="conceptos" style="font-size: 8pt;text-align: left;"  ><b>Total Alquiler:</b> </div>    
+<div class="conceptos" style="font-size: 10pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}text-align: right;"  ><b>{{contrato.total}} &euro; </b></div>    
+
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}{% if contrato.fianza == 0 %}color:#fff;{% endif %}text-align: left;"  ><b>Forma de depósito:</b>{% if contrato.fianza_tarjeta %} Tarjeta {% else %} Efectivo{% endif %} </b></div> 
+<div class="conceptos" style="font-size: 8pt;text-align: left; {% if contrato.fianza == 0 %}color:#fff;{% endif %}"  ><b>Fianza:</b> </div>    
+<div class="conceptos" style="font-size: 8pt;{% if contrato.cancelado %} text-decoration: line-through;{% endif %}{% if contrato.fianza == 0 %}color:#fff;{% endif %}text-align: right;"  >{{contrato.fianza}} &euro; </div>
+<h2 class="franquicia" >{% if contrato.franquicia == 0 %} Seguro sin franquicia {% else %}Seguro con franquicia {{contrato.franquicia}} &euro;{% endif %}</h2>
+
+<div  class="conceptos"style="font-size: 6pt;text-align: left; padding-top: 4pt;"><b > Observación: </b>{% if contrato.observacion %}{{contrato.observacion}}{% endif %}</div>
+<div class="conceptos" style="font-size: 8pt;text-align: left; padding-top: 4pt;"><b> Atendido por: </b> {{contrato.empleado}} </div>
+<div class="conceptos" style="font-size: 8pt;text-align: right; padding-top: 4pt;padding-right: 15pt;"><b> Oficina: </b> {{contrato.oficina}} </div>    
+<div  class="conceptos" style="font-size: 6pt;text-align: left; padding-top: 4pt;">{{condiciones_oficina}}    <br> <b>Registro Mercantil de Las Palmas de Gran Canaria, tomo 1995, libro 0, folio 129, hoja GC44620, inscripción 3ª.</b></div>   
+ <h2  style="text-align: center; color: #2d2d2d; padding-top: 4pt;"">En caso de averia llamar a (+34)600 011 012 {% if movil_oficina != '600 011 012' %}// (+34){{movil_oficina}}{% endif %}</h2>   
+  <div class="conceptos" style="font-size: 8pt;text-align: center; padding-top: 4pt;"><b> Firma empleado: </b> </div>  
+  <div class="conceptos" style="font-size: 8pt;text-align: center; padding-top: 4pt;"><b> Firma conductor: </b> </div>  
+  {% if contrato.adicional %}
+  <div class="conceptos" style="font-size: 8pt;text-align: center; padding-top: 4pt;"><b> Firma condutor adicional: </b> </div>  
+  {% endif %}  
+    
+    <body>
+
+
+
+</html>

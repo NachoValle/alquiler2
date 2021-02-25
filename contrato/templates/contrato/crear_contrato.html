@@ -1,0 +1,1181 @@
+{% extends "core/base.html" %}
+{% load static %}
+ {% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<style type="text/css">
+/*.autocomplete {
+  the container must be positioned relative:
+  position: relative;
+  display: inline-block;*/
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  
+  background-color: #afb1e9;
+}
+
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;*/
+}
+  /* multipaso*/
+
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #3498db;
+}
+
+h1, h2, h3, h4, h5 ,h6{
+  font-weight: 200;
+}
+
+a{
+  text-decoration: none;
+}
+
+p, li, a{
+  font-size: 14px;
+}
+
+fieldset{
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* GRID */
+
+.twelve { width: 100%; }
+.eleven { width: 91.53%; }
+.ten { width: 83.06%; }
+.nine { width: 74.6%; }
+.eight { width: 66.13%; }
+.seven { width: 57.66%; }
+.six { width: 49.2%; }
+.five { width: 40.73%; }
+.four { width: 32.26%; }
+.three { width: 23.8%; }
+.two { width: 15.33%; }
+.one { width: 6.866%; }
+
+/* COLUMNS */
+
+.col {
+	display: block;
+	float:left;
+	margin: 0 0 0 1.6%;
+}
+
+.col:first-of-type {
+  margin-left: 0;
+}
+
+.container{
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.row{
+  padding: 20px 0;
+}
+
+/* CLEARFIX */
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.wrapper{
+  width: 800px;
+  margin: 10px 0;
+  min-height: 530px;
+}
+
+/* STEPS */
+
+.steps{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  text-align: center;
+   width: 800px;
+}
+
+
+.steps li{
+  display: inline-block;
+  margin: 20px;
+  color: #ccc;
+  padding-bottom: 5px;
+}
+
+.steps li.is-active{
+  border-bottom: 1px solid #3498db;
+  color: #3498db;
+}
+
+/* FORM */
+
+.form-wrapper .section{
+  padding: 0px 20px 30px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  -o-transform: scale(1, 0);
+  transform: scale(1, 0);
+  -webkit-transform-origin: top center;
+  -moz-transform-origin: top center;
+  -ms-transform-origin: top center;
+  -o-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  min-height: 600px
+}
+
+.form-wrapper .section h3{
+  margin-bottom: 30px;
+}
+
+.form-wrapper .section.is-active{
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+.form-wrapper .button, .form-wrapper .submit{
+  background-color: #3498db;
+  display: inline-block;
+  padding: 10px 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+ 
+}
+.btn{
+  margin-top:30px;
+ 
+  
+ 
+  background-color: #3498db;
+ 
+  padding: 10px 30px;
+  color: #fff;
+  
+}
+.form-wrapper .submit{
+  border: none;
+  outline: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form-wrapper input[type="number"],
+.form-wrapper select{
+  
+  padding: 10px;
+  margin: 1px auto;
+  background-color: #f1f1f1;
+  border: none;
+  width:70%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.form-wrapper input[name="total_c1"],.form-wrapper input[name="total_c2"],.form-wrapper input[name="total_c3"],.form-wrapper input[name="total_c4"],.form-wrapper input[name="total_c5"],.form-wrapper input[name="total_c6"],
+.form-wrapper input[name="precio_c1"],.form-wrapper input[name="precio_c2"],.form-wrapper input[name="precio_c3"],.form-wrapper input[name="precio_c4"],.form-wrapper input[name="precio_c5"],.form-wrapper input[name="precio_c6"],
+.form-wrapper input[name="cantidad_c1"],.form-wrapper input[name="cantidad_c2"],.form-wrapper input[name="cantidad_c3"],.form-wrapper input[name="cantidad_c4"],.form-wrapper input[name="cantidad_c5"],.form-wrapper input[name="cantidad_c6"],
+.form-wrapper select[name="concepto1"],.form-wrapper select[name="concepto2"],.form-wrapper select[name="concepto3"],.form-wrapper select[name="concepto4"],.form-wrapper select[name="concepto5"],.form-wrapper select[name="concepto6"]
+{  
+  padding: 5px;
+  margin: 3px auto;
+  background-color: #f1f1f1;
+  border: none;
+  width:95%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+
+.form-wrapper input[type="time"],
+.form-wrapper input[type="text"],
+.form-wrapper input[type="password"]{
+  display: block;
+  padding: 10px;
+  margin: 3px auto;
+  background-color: #f1f1f1;
+  border: none;
+  width:100%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+.form-wrapper input[type="date"]{
+  display: block;
+  padding: 4px;
+  margin: 3px auto;
+  background-color: #f1f1f1;
+  border: none;
+  width:100%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+.form-wrapper input[name="total"]{
+color:black;
+font-weight:600;
+}
+
+.form-wrapper input[name="a_licencia"]{
+text-align:center;
+
+}
+
+.form-wrapper input[name="conductor_a"],
+.form-wrapper input[name="vehiculo"],
+.form-wrapper input[name="cliente"],
+.form-wrapper input[name="conductor"]{
+  display: block;
+  padding: 10px;
+  margin: 3px auto;
+  background-color: #fbfbfb;
+  border: none;
+  width:100%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+  
+}
+.form-wrapper input[type="radio"]{
+  display: none;
+}
+
+.form-wrapper input[type="radio"] + label{
+  display: block;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+
+.form-wrapper input[type="radio"] + label:before{
+  content: "✔";
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 100%;
+  background-color: #3498db;
+  color: #fff;
+  display: none;
+}
+
+.form-wrapper input[type="radio"]:checked + label:before{
+  display: block;
+}
+
+.form-wrapper input[type="radio"] + label h4{
+  margin: 15px;
+  color: #ccc;
+}
+
+.form-wrapper input[type="radio"]:checked + label{
+  border: 1px solid #3498db;
+}
+
+.form-wrapper input[type="radio"]:checked + label h4{
+  color: #3498db;
+}
+
+
+
+.fa-thumbs-up{
+  color:green;
+}
+.titulocliente{
+   color:red;
+}
+.titulo{
+   color:red;
+}
+#id_cliente{
+  background= #fff;
+}
+#id_conductor{
+  background= #fff;
+}
+.colum-1,
+.colum-2,
+.colum-3,
+.colum-4,
+.colum-5,
+.colum-6,
+.colum-7,
+.colum-8,
+.colum-9,
+.colum-10,
+.colum-11{
+    display: inline-block;
+    position: relative;
+    min-height: 1px;
+   
+    padding-left: 2px;
+    float:left;
+}
+.colum-12 {
+    display: inline-block;
+    position: relative;
+    min-height: 1px;
+    
+    margin-left: 15px;
+    margin-right: -10px;
+    float:left;
+}
+.colum-1 {
+  width: 8.33333333%;
+
+}
+.colum-2 {
+  width: 16.66666667%;
+
+}
+.colum-3 {
+      width: 25%;
+
+}
+.colum-4 {
+      width: 25%;
+
+}
+.colum-5 {
+      width: 41.66666667%;
+
+}
+.colum-6 {
+  width: 50%;
+}
+
+.colum-7 {
+      width:58.33333333%;
+
+}
+.colum-8 {
+      width: 66.66666667%;
+
+}
+.colum-9 {
+      width: 75%;
+
+}
+.colum-10 {
+      width: 83.33333333%;
+
+}
+.colum-11 {
+      width: 91.66666667%;
+
+}
+.colum-12 {
+  width: 95.55%;
+}
+
+</style> 
+ <script>
+
+
+
+ </script>
+ 
+ {% endblock %}
+{%  block titulopagina %}<div style= "text-align:center;margin: 0px; padding:0px;"> <div style="float: left;">Crear Contrato</div>
+ <div style="float:right; margin-bottom:10px; padding:0px;">
+<button  class="btn btn-xs ver btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title=" ampliar contrato" style= "margin-top: 0px;margin-left: 10px;margin-right: 10px; padding:7px; "  onclick="ampliarcontrato()"><i class="far fa-clock"> </i></button><button  class="btn btn-xs  btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title="vehiculo de sustitución" style= "margin-top: 0px;margin-left: 0px;margin-right: 10px; padding:7px;background-color:#f4d03f;color:white; "  onclick="sustitucion();"><i class="fas fa-sync-alt"></i></button>
+  <select id="city">
+  <option value="0">Elige ciudad</option> 
+  <option value="MADRID">Madrid</option> 
+  <option value="VALLADOLID">Valladolid</option>
+  <option value="SALAMANCA">Salamanca</option>
+  <option value="MALLORCA">Mallorca</option>
+  <option value="LAS PALMAS">Las Palmas</option>
+  <option value="ZAMORA">Zamora</option>
+</select>
+<input id="numero" type="number" placeholder="número de contrato">
+</div></div>
+      {% endblock %}                     
+
+
+{% block content %}
+ <div class="container">
+    <div class="wrapper">
+      <ul class="steps">
+        <li class="is-active">Conductor</li>
+        <li>Cliente</li>
+        <li>Conductor Adicional</li>
+        <li>Vehículo</li>
+        <li>Condiciones</li>
+    
+      </ul>
+     <form  method="post">{% csrf_token %}
+      <div class="color:red">
+                {{ form.errors }}</div>
+        <div class="form-wrapper">
+        <fieldset class="section  is-active col-sm-12">
+          <h3 id="titulo" class="">Conductor <i id="icono" class="fas fa-spinner"></i></h3>          
+         <div class="colum-4"> {{form.id_conductor}}</div><div class="colum-4">{{form.oficina}} </div><div class="colum-4">{{form.empleado}} </div>                              
+                                       
+     <div class="col-sm-4"> 
+      
+                               <label>Nº ID:</label>
+                           
+                               {{form.conductor}} 
+                                         </div> 
+    
+                           <div class="col-sm-4"> 
+                            <label>Nombre:</label> 
+                              {{form.nombre}}
+                                    </div> 
+    
+                             <div class="col-sm-4">     
+            <label>Apellidos:</label>
+                               {{form.apellido}} 
+</div> 
+                              
+                        <div class="col-sm-6">     
+                        
+                                     <label>Dirección:</label>                                                                            
+                          {{form.direccion}}
+                                     </div> 
+                          <div class="col-sm-3">  
+                        <label>Población:</label>                                                                                          
+                          {{form.poblacion}}
+                         </div> 
+                           <div class="col-sm-3"> 
+                        <label>Provincia:</label>                                                                                          
+                          {{form.provincia}}
+                         </div> 
+                           <div class="col-sm-3">
+                        <label>Pais:</label>                                                                                          
+                          {{form.pais}}
+                      </div>
+                        <div class="col-sm-3">
+                        <label>Nacimiento:</label>                                                                                          
+                          {{form.f_nacimiento}}
+                        </div>
+                        <div class="col-sm-3">
+                        <label>Teléfono 1:</label>                                                                                          
+                          {{form.movil}}
+                          </div>
+                          <div class="col-sm-3">
+                        <label>Teléfono 2:</label>                                                                                          
+                          {{form.telefono}}<br>
+                        </div><br>
+                        <div class="col-sm-12">
+                        <label>Nº Licencia:</label>                                                                                          
+                          {{form.licencia}}
+                      </div> 
+                       <div class="col-sm-4">
+                        <label>L. expedición: {{edad}}</label>                                                                                          
+                          {{form.l_exp}}
+                        </div>
+                        <div class="col-sm-4">
+                        <label>Expedición:</label>                                                                                          
+                          {{form.f_exp}}
+                          </div>
+                          
+                 
+                        <div class="col-sm-4">
+                        <label>Caducidad:</label>                                                                                          
+                          {{form.f_caducidad}}
+                        </div> 
+                               
+                        
+                         
+
+
+
+
+
+
+
+
+          <div class="button">Siguiente</div>
+        </fieldset>
+        <fieldset class="section">
+       
+          <h3 id="titulocliente" class="">Cliente <i id="iconocliente" class="fas fa-spinner"></i></h3>          
+          {{form.id_cliente}}   
+            <div class="col-sm-4">                            
+   
+          <button value="Cliente = Conductor" class="btn btn-s-md btn-info" style= "margin-top: 25px; flotat:rigth"onclick= "clienteconductor();PasarValorCliente();">Cliente = Conductor</button>                              
+      </div> 
+      <div class="col-sm-4"> 
+
+
+                               <label>Nº ID:</label>      
+                               {{form.cliente}} 
+                                         </div>
+    
+                           <div class="col-sm-4"> 
+                            <label>Nombre:</label> 
+                              {{form.c_nombre}}
+                                    </div> 
+    
+                             <div class="col-sm-4">     
+            <label>Apellidos:</label>
+                               {{form.c_apellido}} 
+</div> 
+                              
+                        <div class="col-sm-8">     
+                        
+                                     <label>Dirección:</label>                                                                            
+                          {{form.c_direccion}}
+                                     </div> 
+                          <div class="col-sm-3">  
+                        <label>Población:</label>                                                                                          
+                          {{form.c_poblacion}}
+                         </div> 
+                           <div class="col-sm-3"> 
+                        <label>Provincia:</label>                                                                                          
+                          {{form.c_provincia}}
+                         </div> 
+                           <div class="col-sm-3">
+                        <label>C.P.:</label>                                                                                          
+                          {{form.c_cp}}
+                      </div>
+                        <div class="col-sm-3">
+                        <label>Pais:</label>                                                                                          
+                          {{form.c_pais}}
+                        </div>
+                        <div class="col-sm-3">
+                        <label>Teléfono 1:</label>                                                                                          
+                          {{form.c_movil}}
+                          </div>
+                          <div class="col-sm-3">
+                        <label>Teléfono 2:</label>                                                                                          
+                          {{form.c_telefono}}<br>
+                        </div>
+                        
+          <div class="button">Siguiente</div>
+        </fieldset>
+        <fieldset class="section  col-sm-12">
+          
+    
+           
+           <h3 id="tituloca" class="">Conductor Adicional<i id="iconoca" class="fas fa-spinner"></i></h3>         
+               {{form.id_conductor_ad}}                               
+               
+
+      <div class="col-sm-4"> 
+     
+                               <label>Nº ID:</label>      
+                               {{form.conductor_a}} 
+                                    </div> 
+    
+                           <div class="col-sm-4"> 
+                            <label>Nombre:</label> 
+                              {{form.a_nombre}}
+                                    </div> 
+    
+                             <div class="col-sm-4">     
+            <label>Apellidos:</label>
+                               {{form.a_apellido}} 
+</div> 
+                              
+                        <div class="col-sm-6">     
+                        
+                                     <label>Dirección:</label>                                                                            
+                          {{form.a_direccion}}
+                                     </div> 
+                          <div class="col-sm-3">  
+                        <label>Población:</label>                                                                                          
+                          {{form.a_poblacion}}
+                         </div> 
+                           <div class="col-sm-3"> 
+                        <label>Provincia:</label>                                                                                          
+                          {{form.a_provincia}}
+                         </div> 
+                           <div class="col-sm-3">
+                        <label>Pais:</label>                                                                                          
+                          {{form.a_pais}}
+                      </div>
+                        <div class="col-sm-3">
+                        <label>Nacimiento:</label>                                                                                          
+                          {{form.a_f_nacimiento}}
+                        </div>
+                        <div class="col-sm-3">
+                        <label>Teléfono 1:</label>                                                                                          
+                          {{form.a_movil}}
+                          </div>
+                          <div class="col-sm-3">
+                        <label>Teléfono 2:</label>                                                                                          
+                          {{form.a_telefono}}<br>
+                        </div><br>
+                        <div class="col-sm-12">
+                        <label>Nº Licencia:</label>                                                                                          
+                          {{form.a_licencia}}
+                      </div> 
+                       <div class="col-sm-4">
+                        <label>L. expedición: {{edad}}</label>                                                                                          
+                          {{form.a_l_exp}}
+                        </div>
+                        <div class="col-sm-4">
+                        <label>Expedición:</label>                                                                                          
+                          {{form.a_f_exp}}
+                          </div>
+                          
+                 
+                        <div class="col-sm-4">
+                        <label>Caducidad:</label>                                                                                          
+                          {{form.a_f_caducidad}}
+                          </div>                            
+                                  
+        <div class="button">Siguiente</div>
+        </fieldset>
+         <fieldset class="section">
+          <h3>Vehículo</h3>
+          {{form.id_vehiculo}}  
+          <div class="col-sm-6"  style="border:ridge #3498db 1px;">                                          
+              
+                                   <label><b>Matricula:</b></label>         
+                               {{form.vehiculo}} 
+                                                                 
+                                                                          
+                        <label>Marca:</label>                                                                                          
+                          {{form.marca}}
+                          
+                        <label>Modelo:</label>                                                                                          
+                          {{form.modelo}}
+                          
+                        <label>Tipo Combustible:</label>                                                                                          
+                          {{form.t_combustible}}
+                        
+                       
+                        <label>Color:</label>                                                                                          
+                          {{form.color}}
+                      
+                         
+                        <label>Km Extra:</label>                                                                                          
+                          {{form.km_extra}}
+                          </div> 
+                          
+                         
+
+
+                           <div class="col-sm-6"> 
+                              
+                              <div style="border:ridge #3498db 1px; padding:5px ;">
+                         <div >  <label><b>  ODO:</b></label>      {{form.km_inicio}}<b>km</b></div>                                    
+                            
+                                                       <label> <b> Fuel:</b></label>{{form.combustible}}</label>  
+                             <label><b> Franquicia:</b> </label>{{form.franquicia}}<b>€</b> 
+                             <div ><label><b> Km libres:</b> </label>{{form.km_libres}}<label><b> Km ilimitado:</b>{{form.km_ilimitado}} </label></div>
+                             
+
+
+
+
+
+                                    </div> 
+                                    <div style="border:ridge #3498db 1px; padding:5px ; margin-top:15px;">
+                         <div>  <label><b> Ciudad Recogida</b></label>      {{form.ciudad_recogida}}</div>                                    
+                            
+                                                       <label> <b> Ciudad entrega:</b></label>{{form.ciudad_devolucion}}</label>  
+                   
+                                    </div> 
+                                    
+                                    
+                                    </div>
+          <div class="button">Siguiente</div>
+        </fieldset>
+        <fieldset class="section ">
+        <div class="col-sm-12">
+        
+          <h3>Condiciones   <p id="dias"><p></h3>
+          <div class="col-sm-3"> 
+                               <label><strong>Inicio:</strong></label>      
+                              <div style="border:ridge #3498db 1px; padding:5px ">
+                               {{form.f_inicio}} 
+                                          
+                            
+                              {{form.h_inicio}}
+                                    </div> </div> 
+    
+                             <div class="col-sm-3"> 
+                               <label><strong>Fin:</strong></label>      
+                              <div style="border:ridge #3498db 1px; padding:5px ">
+                               {{form.f_fin}} 
+                                          
+                            
+                              {{form.h_fin}}
+                                    </div> </div> 
+                              
+                    
+
+                                    
+                                    <div class="col-sm-3"> 
+                                     <label ><strong>Fianza:</strong></label>
+                              
+                                     <div style="border:ridge #3498db 1px; padding:5px ">
+                                                                                                                 
+                                 
+                                       {{form.fianza}}<b>€</b> 
+                                        <label>  <br>{{form.fianza_tarjeta}}<b> Con Tarjeta</b></label>                                                                                               
+                                   </div></div>
+                                    <div class="colum-3"  > 
+                                     <label ><strong>Total Alquiler:</strong></label>
+                              
+                                     <div style="border:ridge #3498db 1px; padding:5px ">
+                                                                                                                 
+                                 
+                                       {{form.total}}<b>€</b> 
+                                        <label>  <br>{{form.pago_tarjeta}}<b> Con Tarjeta</b></label>                                                                                               
+                                   </div></div>                              
+                     <div  class="colum-12" style="border:ridge #3498db 1px; margin-top:10px "><select id="grupo">
+  <option value="0">Elige grupo</option> 
+  <option value="A">A</option> 
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+  <option value="E">E</option>
+  <option value="F">F</option>
+  <option value="FA">FA</option> 
+  <option value="FB">FB</option>
+  <option value="FC">FC</option>
+  <option value="FD">FD</option>
+  <option value="FE">FE</option>
+  <option value="FF">FF</option>
+</select>
+<button  class="btn btn-xs ver btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title=" Calcular precio por grupo" style= "margin-top: 0px;margin-left: 10px;margin-right: 10px; padding:7px; "  onclick="">
+<i class="fas fa-coins"> </i></button>
+</div>
+               <div class="colum-12"  style="border:ridge #3498db 1px; margin-top:10px ">      
+              <div class="colum-7" >
+             <label>concepto</label>
+                 <div>1.{{form.concepto1}}</div></div>
+        
+              <div class="colum-1"><label>cantidad</label>{{form.cantidad_c1}}</div>
+              
+              <div class="colum-2"> <label>precio</label>{{form.precio_c1}}</div>
+               
+              <div class="colum-2"><label>total</label>{{form.total_c1}}</div>
+              <div class="colum-7" >
+             
+              2.{{form.concepto2}}</div>
+           
+              <div class="colum-1">{{form.cantidad_c2}}</div>              
+              <div class="colum-2">{{form.precio_c2}}</div>
+              <div class="colum-2">{{form.total_c2}}</div>
+            <div class="colum-7" >
+               3.{{form.concepto3}}</div>
+           
+              <div class="colum-1">{{form.cantidad_c3}}</div>
+              <div class="colum-2">{{form.precio_c3}}</div>
+              <div class="colum-2">{{form.total_c3}}</div>
+              <div class="colum-7" >
+               4.{{form.concepto4}}</div>
+           
+              <div class="colum-1">{{form.cantidad_c4}}</div>
+              <div class="colum-2">{{form.precio_c4}}</div>
+              <div class="colum-2">{{form.total_c4}}</div>
+          <div class="colum-12" >
+               <label>Observación:</label>{{form.observacion}}</div>
+           
+             
+             
+              </div>
+              
+              
+              
+              
+              </div> 
+        <div class="col-sm-12"> 
+               <div class="form-group"> 
+                <input type="submit" class="btn btn-primary" value="Crear Contrato" />
+
+         <div class="button">Volver</div>
+       
+         
+                </div>   </div> </div>
+      </form>
+    </div>
+  </div>
+
+
+
+ 
+
+ <div id="r_fianza" style="visibility: hidden">{{request.user.profile.fianza}}</div>
+ <div id="r_carga" style="visibility: hidden" >{{request.user.profile.f_carga}}</div>
+ <div id="r_turismo" style="visibility: hidden" >{{request.user.profile.f_turismo}}</div>
+ <div id="r_trato" style="visibility: hidden">{{request.user.profile.trato}}</div>
+ <div id="r_oficina" style="visibility: hidden">{{request.user.profile.oficina}}</div>
+ <div id="r_km_turismo" style="visibility: hidden">{{request.user.profile.km_extra_turismo}}</div>
+ <div id="r_km_carga" style="visibility: hidden" >{{request.user.profile.km_extra_carga}}</div>
+
+<script>
+var json = $.parseJSON($.ajax({
+                url:  "{%  url 'api_vehiculo' %}",
+                dataType: "json", 
+                async: false
+            }).responseText);
+var jsonCliente = $.parseJSON($.ajax({
+                url:  "{%  url 'api_cliente' %}",
+                dataType: "json", 
+                async: false
+            }).responseText);
+    
+var jsonContrato = $.parseJSON($.ajax({
+                url:  "{%  url 'api_contrato' %}",
+                dataType: "json", 
+                async: false
+            }).responseText);
+ </script>	
+<!-- easy autocomplete-->
+<script>
+
+
+function ampliarcontrato(){
+var city = document.getElementById("city").value
+var numero = document.getElementById("numero").value
+numero = Number(numero)
+
+var contratos=[];
+
+var i = 0;
+for (i; i<jsonContrato.length; i++){
+ if (city == jsonContrato[i].oficina ){
+   if ((numero == jsonContrato[i].c_madrid)||(numero == jsonContrato[i].c_salamanca) || (numero == jsonContrato[i].c_valladolid) || (numero == jsonContrato[i].c_las_palmas) || (numero == jsonContrato[i].c_mallorca) || (numero == jsonContrato[i].c_zamora)){
+      contratos.push(jsonContrato[i]);};};
+   }
+if (contratos.length > 0){
+document.getElementById("id_conductor").value = contratos[0].conductor;
+PasarValorConductor();
+
+document.getElementById("id_cliente").value = contratos[0].cliente;
+PasarValorCliente();
+if (contratos[0].adicional == true ){
+document.getElementById("id_conductor_a").value = contratos[0].conductor_a;
+PasarValorConductorA();
+};
+
+document.getElementById("id_vehiculo").value = contratos[0].vehiculo;
+PasarValorVehiculo();
+
+document.getElementById("id_ciudad_recogida").value = contratos[0].ciudad_recogida;
+document.getElementById("id_ciudad_devolucion").value = contratos[0].ciudad_devolucion;
+document.getElementById("id_combustible").value = contratos[0].combustible;
+document.getElementById("id_franquicia").value = contratos[0].franquicia;
+
+
+var odo = contratos[0].km_inicio;
+var libres = contratos[0].km_libres;
+var total_km = Number(odo) + Number(libres);
+document.getElementById("id_km_inicio").value = total_km;
+
+
+document.getElementById("id_f_fin").value = document.getElementById("id_f_inicio").value;
+document.getElementById("id_h_fin").value = document.getElementById("id_h_inicio").value;
+document.getElementById("id_f_inicio").value = contratos[0].f_fin;
+document.getElementById("id_h_inicio").value = contratos[0].h_fin;
+
+document.getElementById("id_fianza").value = contratos[0].fianza;
+document.getElementById('id_fianza_tarjeta').checked = contratos[0].fianza_tarjeta;
+
+document.getElementById("id_observacion").value = "Ampliación contrato " + numero + "-" + city;
+
+
+} else {
+  alert('El contrato no se encuentra, compruebe los datos');
+}
+  
+
+
+
+
+};
+
+
+function sustitucion(){
+var city = document.getElementById("city").value
+var numero = document.getElementById("numero").value
+numero = Number(numero)
+
+var contratos=[];
+
+var i = 0;
+for (i; i<jsonContrato.length; i++){
+ if (city == jsonContrato[i].oficina ){
+   if ((numero == jsonContrato[i].c_madrid)||(numero == jsonContrato[i].c_salamanca) || (numero == jsonContrato[i].c_valladolid) || (numero == jsonContrato[i].c_las_palmas) || (numero == jsonContrato[i].c_mallorca) || (numero == jsonContrato[i].c_zamora)){
+      contratos.push(jsonContrato[i]);};};
+   }
+if (contratos.length > 0){
+document.getElementById("id_conductor").value = contratos[0].conductor;
+PasarValorConductor();
+
+document.getElementById("id_cliente").value = contratos[0].cliente;
+PasarValorCliente();
+if (contratos[0].adicional == true ){
+document.getElementById("id_conductor_a").value = contratos[0].conductor_a;
+PasarValorConductorA();
+};
+
+document.getElementById("id_ciudad_recogida").value = contratos[0].ciudad_recogida;
+document.getElementById("id_ciudad_devolucion").value = contratos[0].ciudad_devolucion;
+
+document.getElementById("id_f_fin").value = contratos[0].f_fin;
+document.getElementById("id_h_fin").value = contratos[0].h_fin;
+
+document.getElementById("id_fianza").value = contratos[0].fianza;
+document.getElementById('id_fianza_tarjeta').checked = contratos[0].fianza_tarjeta;
+
+document.getElementById("id_observacion").value = "Vehículo de sustitución contrato " + numero + "-" + city;
+
+
+} else {
+  alert('El contrato no se encuentra, compruebe los datos');
+}
+  
+
+
+
+
+};
+
+
+
+</script>
+
+
+
+<script src="{% static 'core/alquiler/crear_contrato.js' %}"></script>
+
+
+
+<!-- formulario a pasos -->
+<script>
+$(document).ready(function(){
+  $(".form-wrapper .button").click(function(){
+    var button = $(this);
+    var currentSection = button.parents(".section");
+    var currentSectionIndex = currentSection.index();
+    var headerSection = $('.steps li').eq(currentSectionIndex);
+    currentSection.removeClass("is-active").next().addClass("is-active");
+    headerSection.removeClass("is-active").next().addClass("is-active");
+
+    $(".form-wrapper").submit(function(e) {
+      e.preventDefault();
+    });
+
+    if(currentSectionIndex === 4){
+      $(document).find(".form-wrapper .section").first().addClass("is-active");
+      $(document).find(".steps li").first().addClass("is-active");
+    }
+  });
+});
+
+</script> 
+<!-- Hoy -->
+<script>
+
+window.onload = function(){
+  var fecha = new Date(); //Fecha actual
+  var fecha2 = new Date() //Fecha actual
+  fecha2.setDate(fecha2.getDate() + 1);
+  var mes = fecha.getMonth()+1; //obteniendo mes
+  var dia = fecha.getDate(); //obteniendo dia
+  var ano = fecha.getFullYear(); //obteniendo año
+  var hora = fecha.getHours(); //obteniendo dia
+  var minuto = fecha.getMinutes(); //obteniendo año
+  
+  if(minuto<10)
+    minuto='0'+minuto; //agrega cero si el menor de 10
+  
+  
+  var mes2 = fecha2.getMonth()+1; //obteniendo mes
+  var dia2 = fecha2.getDate(); //obteniendo dia
+  var ano2 = fecha2.getFullYear(); //obteniendo año
+  if(hora<10)
+    hora='0'+hora; //agrega cero si el menor de 10
+  if(dia<10)
+    dia='0'+dia; //agrega cero si el menor de 10
+  if(mes<10)
+    mes='0'+mes //agrega cero si el menor de 10
+  document.getElementById('id_f_inicio').value=ano+"-"+mes+"-"+dia;
+  var tiempo = hora+":"+minuto;
+  document.getElementById('id_h_inicio').value=tiempo;
+  document.getElementById('id_h_fin').value=tiempo;
+
+  if(dia2<10)
+    dia2='0'+dia2; //agrega cero si el menor de 10
+  if(mes2<10)
+    mes2='0'+mes2 //agrega cero si el menor de 10
+    
+  document.getElementById('id_f_fin').value=ano2+"-"+mes2+"-"+dia2;
+  //Obtiene ciudad usuario
+  var ofis = document.getElementById('r_oficina').innerHTML;
+  // Agrega la ciudad a la oficina, ciudad recogidad y ciudad de entrega
+  document.getElementById('id_oficina').value = ofis;
+  document.getElementById('id_ciudad_recogida').value = ofis;
+  document.getElementById('id_ciudad_devolucion').value = ofis;
+   //Obtiene fianza usuario
+  var fianz = document.getElementById('r_fianza').innerHTML;
+  fianz = Number.parseFloat(fianz).toFixed(2);
+  // agrega la fianza al formulario  
+  document.getElementById('id_fianza').value = fianz;
+  //Obtiene trato usuario
+  var atendido = document.getElementById('r_trato').innerHTML;
+  document.getElementById('id_empleado').value = atendido;
+  
+  console.log(atendido); 
+  
+  console.log(fecha);
+  console.log(tiempo);
+  
+
+ 
+
+
+
+}
+
+</script>
+
+<!-- JS file -->
+<script src="{% static 'core/EasyAutocomplete/jquery.easy-autocomplete.min.js' %}"></script>
+
+<!-- CSS file -->
+<link rel="stylesheet" href="{% static 'core/EasyAutocomplete/easy-autocomplete.min.css' %}">
+
+<script>
+var options = {
+	url: "{%  url 'api_vehiculo' %}",
+
+	getValue: "placa",
+
+	list: {
+		match: {
+			enabled: true
+		},onClickEvent: function() {
+			PasarValorVehiculo();
+		}	
+	}
+};
+$("#id_vehiculo").easyAutocomplete(options);
+</script>
+
+<script>
+var options = {
+	url: "{%  url 'api_cliente' %}",
+
+	getValue: "n_id",
+
+	list: {
+		match: {
+			enabled: true
+		},onClickEvent: function() {
+			PasarValorCliente();
+		}	
+	}
+};
+$("#id_cliente").easyAutocomplete(options);
+
+var options = {
+	url: "{%  url 'api_cliente' %}",
+
+	getValue: "n_id",
+
+	list: {
+		match: {
+			enabled: true
+		},onClickEvent: function() {
+			PasarValorConductorA();
+		}	
+	}
+};
+$("#id_conductor_a").easyAutocomplete(options);
+
+
+var options = {
+	url: "{%  url 'api_cliente' %}",
+
+	getValue: "n_id",
+
+	list: {
+		match: {
+			enabled: true
+		},onClickEvent: function() {
+			PasarValorConductor();
+		}	
+	}
+};
+$("#id_conductor").easyAutocomplete(options);
+
+</script>
+{% endblock %}

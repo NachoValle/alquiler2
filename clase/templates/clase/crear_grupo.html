@@ -1,0 +1,82 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ <style type="text/css">
+
+.verde1{
+  background-color: #2ecc71;
+}
+.form select{
+  
+  padding: 10px;
+  margin: 1px auto;
+  background-color: #f1f1f1;
+  border: none;
+  width:70%;
+  outline: none;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+ </style> 
+ {% endblock %}
+{%  block titulo_pagina %}{% if request.path == '/clase/CrearGrupo/' %}Crear Grupo{% else %} Actualizar Grupo {% endif %}{% endblock %}
+
+{% block content %}
+
+
+<div id="r_oficina" style="visibility: hidden">{{request.user.profile.oficina}}</div>
+
+<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+                <table>
+                <div style="color:red; background-color: white;">
+                {{ form.errors }}</div>
+  <div class="col-sm-12">
+                  <section class="panel panel-default">
+                    <header class="panel-heading font-bold">{% if request.path == '/clase/CrearGrupo/' %}Grupo{% else %} Concepto {% endif %}</header>
+                    <div class="panel-body">
+                      
+                        <div class="form-group"> 
+                        <div style="float: left; padding-right: 15px;text-align:center;"><label>Ciudad</label>{{form.ciudad}} </div>                       
+                              <div style="float: left;text-align:center; "> <label>Grupo</label>
+                               {{form.grupo}} </div>
+                               <div style="float: left; padding-left: 15px; width:60%;"><label>Descripción</label>  {{form.descripcion}} </div>
+                                      </div>   </div> 
+
+                  </section>
+                </div>
+
+ 
+                 
+               
+
+                </table>
+                <br>
+              <div class="col-sm-12"> 
+               <div class="form-group">
+               {% if request.path == '/clase/CrearGrupo/' %} 
+                <input type="submit" class="btn verde1 btn-block" style= "color:white" value="Crear Grupo" />
+                {% else %}
+                <input type="submit" class="btn verde1 btn-block"  style= "color:white" value="Actualizar Concepto" />
+                {% endif %}
+                </div>   </div>
+            </form>
+
+<script>
+function Ofis(){
+ var a = document.getElementById('r_oficina').innerHTML;
+ document.getElementById('id_ciudad').value= a;
+ console.log(a);
+};
+
+
+window.onload =  Ofis();
+
+
+
+
+
+</script>
+
+
+
+{% endblock %}

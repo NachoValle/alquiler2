@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ <style type="text/css">
+
+.verde1{
+  background-color: #2ecc71;
+}
+ </style> 
+ {% endblock %}
+{%  block titulo_pagina %}{% if request.path == '/contrato/NuevoConcepto/' %}Crear Concepto{% else %} Actualizar Concepto {% endif %}{% endblock %}
+
+{% block content %}
+
+
+
+
+<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+                <table>
+                <div class="color:red">
+                {{ form.errors }}</div>
+  <div class="col-sm-12">
+                  <section class="panel panel-default">
+                    <header class="panel-heading font-bold">{% if request.path == '/contrato/NuevoConcepto/' %}Nuevo Concepto{% else %} Concepto {% endif %}</header>
+                    <div class="panel-body">
+                      
+                        <div class="form-group">                        
+                                                  
+                               {{form.concepto}} 
+                                      </div>   </div> 
+
+                  </section>
+                </div>
+
+ 
+                 
+               
+
+                </table>
+                <br>
+              <div class="col-sm-12"> 
+               <div class="form-group">
+               {% if request.path == '/contrato/NuevoConcepto/' %} 
+                <input type="submit" class="btn verde1 btn-block" style= "color:white" value="Crear Concepto" />
+                {% else %}
+                <input type="submit" class="btn verde1 btn-block"  style= "color:white" value="Actualizar Concepto" />
+                {% endif %}
+                </div>   </div>
+            </form>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+  <style type="text/css">
+body{
+  background-color: #3498db;
+}
+.peligro{
+background-color:#c0392b;
+color:black;
+}
+.alert-warning{
+  background-color:#f4d03f;
+color:black;
+}
+.editar{
+  background-color:#f4d03f;
+color:white;
+}
+.ver{
+background-color:#3498db;
+color:white;
+}
+ </style>
+ {% endblock %}
+{%  block titulo_pagina %}Lista de Presupuestos {% endblock %}
+
+{% block content %}
+<!--{% if itv_ok %}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{itv_ok}}</a>.
+</div>
+{% endif %}-->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{ message }}</a>.
+</div>
+        
+    
+    {% endfor %}
+</ul>
+{% endif %}
+
+<section class="panel panel-azul ">
+
+           <header class="panel-heading bg-azul3" style= "color: black">
+                  <h5>Presupuestos {{ciudad}}</h5>
+                </header>
+                  <div class="table-responsive">
+                  <table class="table table-striped b-t b-light" id="tabla_datos">
+                    <thead>
+                      <tr>                   
+                        <th width="10%" class="th-sortable" data-toggle="class">Nº presupuesto</th>
+                        <th>Reservado</th>                         
+                        <th>Fecha</th>                         
+                        <th>Cliente</th>
+                        <th>Vehiculo</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for object in presupuestos %}
+                     
+
+                      <tr>
+                        <td >{{object.id}}</td>                        
+                        <td >{% if object.reservado %}<i class="fas fa-check" style="color:green">{% endif %}</td>
+                        <td >{{object.f_contrato}}</td>
+                        <td >{{object.c_nombre}} {% if object.c_apellido %} {{object.c_apellido}}{% endif %}</td>
+                        <td >{{object.vehiculo}}</td>
+                        <td >{{object.total}}</td>
+                        
+                        <td><a href="#"><button class="btn btn-sm ver btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title="imprimir presupuesto"><i class="fas fa-print"> </i></button></a><a href="#"> <button class="btn btn-sm editar btn-rounded" data-toggle="tooltip" data-placement="left" title="" data-original-title="Editar presupuesto"><i class="fas fa-pencil-alt" ></i></button> </a>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                
+              </section>
+
+
+
+
+
+
+
+
+{% endblock %}

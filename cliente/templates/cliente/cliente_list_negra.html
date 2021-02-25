@@ -1,0 +1,95 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ <style type="text/css">
+body{
+  background-color: #3498db;
+}
+.editar{
+  background-color:#f4d03f;
+color:white;
+}
+.ver{
+background-color:#3498db;
+color:white;
+}
+.alert .alert-warning{
+  background-color:#f4d03f;
+color:black;
+}
+ </style>
+ {% endblock %}
+{%  block titulo_pagina %}Lista de Clientes{% endblock %}
+
+{% block content %}
+<!--{% if itv_ok %}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{itv_ok}}</a>.
+</div>
+{% endif %}-->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <h5><i class="fas fa-check-circle"></i><strong>INFORMACION:</strong></h5>{{ message }}</a>.
+</div>
+        
+    
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+
+<section class="panel panel-default ">
+
+           <header class="panel-heading bg-black dker" style= "color: white">
+                  <h5>Lista Negra  </h5>
+                </header>
+                  <div class="table-responsive">
+                  <table class="table table-striped b-t b-light" id="tabla_datos">
+                    <thead>
+                      <tr>                   
+                        <th width="10%" class="th-sortable" data-toggle="class">Nº cliente</th>
+                        <th>Nombre</th>                         
+                        <th>Apellidos</th>                         
+                        <th>Nº ID</th>
+                        <th>Movil</th>
+                        <th >Email</th>
+                        <th >Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for object in cliente_list %}
+                     {% if object.negra %}
+
+                      <tr>
+                        <td >{{object.id}}</td>                        
+                        <td >{{object.nombre}}</td>
+                        <td > {% if object.apellido %}{{object.apellido}}{% endif %}</td>
+                        <td >{{object.n_id}}</td>
+                        <td >{% if object.movil %}{{object.movil}}{% endif %}</td>
+                        <td > {% if object.email %}{{object.email}} {% endif %}</td>
+                        
+                        <td><a href="{% url 'cliente:detalle' object.id object.n_id|slugify %}"><button class="btn btn-sm ver btn-rounded"   data-toggle="tooltip" data-placement="left" title="" data-original-title="Ver Cliente"><i class="fas fa-eye"> </i></button></a><a href="{% url 'cliente:actualizar' object.id %}"> <button class="btn btn-sm editar btn-rounded" data-toggle="tooltip" data-placement="left" title="" data-original-title="Editar Cliente"><i class="fas fa-pencil-alt" ></i></button> </a>
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                
+              </section>
+
+
+
+
+
+
+
+
+{% endblock %}

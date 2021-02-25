@@ -1,0 +1,76 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ 	<style>
+
+body{
+  background-color: #3498db;
+}
+
+   .contenedor{
+     height:50px;
+     
+   }
+
+		#matricula {
+
+			position: relative;
+    display:inline-block;
+    text-align: center;
+    width:150px;
+    
+
+		}
+
+		#placa
+
+		{
+      
+
+		position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+
+		}
+
+	</style>
+ {% endblock %}
+{%  block titulo_pagina %}Lista de Oficinas{% endblock %}
+
+{% block content %}
+
+
+{% for agencia in agencia_list %}
+            <div class="col-lg-4" style="margin-top:50px;">
+                <section class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="{% url 'agencia:actualizar' agencia.id|slugify %}"> <button class="btn btn-sm btn-warning btn-rounded" data-toggle="tooltip" data-placement="right" title="" data-original-title="Editar agencia"><i class="fas fa-pencil-alt" ></i></button> </a> 
+                        <div class="clearfix text-center m-t">
+                        <div class="contenedor">
+                                                
+                                                <div id="matricula">
+                                                    <h3 style="color:black;font-family:Impact">{{agencia.ciudad}}</h3>
+                                                </div>        
+                                            </div>         
+                            <div class="inline" >
+                                <div class="easypiechart easyPieChart" data-percent="100" data-line-width="6" data-bar-color="#192965" data-track-color="#f5f5f5" data-scale-color="false" data-size="225" data-line-cap="butt" data-animate="1000" style="width: 200px;  line-height: 200px;">
+                                    <div class="thumb-lg" style='width:200px;'>                           
+                                        <img onerror="this.src='{% static "core/images/logo.png" %}' "; src={{agencia.image.url}} class="img-circle">
+                                            
+                                            
+                                            
+                                    </div>        
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
+                </section>   
+            </div>     
+
+                  
+                 
+                
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}  
+{% load static %}
+ {% block head %}
+ <style type="text/css">
+body{
+  background-color: #3498db;
+}
+ </style>
+ {% endblock %}
+{%  block titulo_pagina %}Lista de Contratos{% endblock %}
+
+{% block content %}
+
+
+<section class="panel panel-azul ">
+
+           <header class="panel-heading bg-azul2" style= "color: black">
+                  <h5>Contratos</h5>
+                </header>
+                  <div class="table-responsive">
+                  <table class="table table-striped b-t b-light" id="tabla_datos">
+                    <thead>
+                      <tr>                   
+                        <th width="10%" class="th-sortable" data-toggle="class">Nº contrato</th>
+                        <th>Ciudad</th>                         
+                        <th>Fecha</th>                         
+                        <th>Cliente</th>
+                        <th>Vehiculo</th>
+                       
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for object in contratos %}
+                     
+
+                      <tr>
+                        <td >{{object.c_general}}</td>                        
+                        <td >{{object.oficina}}</td>
+                        <td >{{object.f_contrato}}</td>
+                        <td >{{object.cliente}}</td>
+                        <td >{{object.vehiculo}}</td>
+                        
+                        
+                        <td><a href="{% url 'contrato:contratopdf' object.id object.c_general|slugify %}"><button class="btn btn-sm ver btn-rounded"  data-toggle="tooltip" data-placement="left" title="" data-original-title="imprimir contrato"><i class="fas fa-print"> </i></button></a><a href="{% url 'contrato:actualizar_contrato' object.id object.c_general|slugify %}"> <button class="btn btn-sm editar btn-rounded" data-toggle="tooltip" data-placement="left" title="" data-original-title="Editar contrato"><i class="fas fa-pencil-alt" ></i></button> </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                
+              </section>
+
+
+
+
+
+
+
+
+{% endblock %}
